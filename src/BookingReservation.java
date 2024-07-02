@@ -2,6 +2,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /*
@@ -32,6 +35,21 @@ public class BookingReservation  extends JFrame implements ActionListener {
     setLayout(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     getContentPane().setBackground(Color.black);
+            try {
+            // Load MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish the database connection
+            String url = "jdbc:mysql://localhost:3308/db_loginadmin";
+            String username = "Jurie";
+            String password = "12345";
+            connn = DriverManager.getConnection(url, username, password);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Database connection error: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        
     
      //image
         Reservation = new JLabel();
@@ -72,21 +90,21 @@ public class BookingReservation  extends JFrame implements ActionListener {
     btnBack.setBounds(70, 300, 100, 30);
     btnBack.setFont(new Font("Arial", Font.BOLD, 15));
     btnBack.addActionListener(this);
-    btnBack.setForeground(Color.white);
-    btnBack.setBackground(Color.blue);
+    btnBack.setForeground(Color.BLACK);
+    btnBack.setBackground(Color.YELLOW);
     
     btnReset = new JButton("clear");
     btnReset.setBounds(230, 300, 100, 30);
     btnReset.setFont(new Font("Arial", Font.BOLD, 15));
     btnReset.addActionListener(this);
-    btnReset.setBackground(Color.blue);
-    btnReset.setForeground(Color.WHITE);
+    btnReset.setBackground(Color.YELLOW);
+    btnReset.setForeground(Color.BLACK);
     
     btnreserve = new JButton("Reserve");
     btnreserve.setBounds(350, 300, 100, 30);
     btnreserve.setFont(new Font("Arial", Font.BOLD, 15));
     btnreserve.addActionListener(this);
-    btnreserve.setBackground(Color.blue);
+    btnreserve.setBackground(Color.YELLOW);
     btnreserve.setForeground(Color.WHITE);
     
     txtfldname.setBounds(280, 50, 200,30);
@@ -100,8 +118,6 @@ public class BookingReservation  extends JFrame implements ActionListener {
     txtflddays.setBounds(280, 150, 200,30);
     txtflddays.setFont(new Font("Arial", Font.PLAIN, 20));
      
-    
-    
     txtfldAddress.setBounds(280,200 , 200,30);
     txtfldAddress.setFont(new Font("Arial", Font.PLAIN, 20));
     
@@ -147,6 +163,7 @@ public class BookingReservation  extends JFrame implements ActionListener {
           
            
         }
+   
     }   
 }
     

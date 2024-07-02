@@ -37,7 +37,7 @@ public class Login extends JFrame implements ActionListener {
         // Initialize database connection
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3308/db_loginadmin"; // Adjust URL as per your database configuration
+            String url = "jdbc:mysql://localhost:3308/db_loginadmin?"; // Adjust URL as per your database configuration
             String dbUsername = "Jurie"; // Replace with your database username
             String dbPassword = "12345"; // Replace with your database password
             con = DriverManager.getConnection(url, dbUsername, dbPassword);
@@ -129,9 +129,10 @@ public class Login extends JFrame implements ActionListener {
                 rs = pst.executeQuery();
                 if (rs.next()) {
                     JOptionPane.showMessageDialog(this, "Login successful!");
-                    dispose();
+                    
                     ChooseServices cs = new ChooseServices();
                     cs.setVisible(true);
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Login failed! Invalid credentials.");
                 }

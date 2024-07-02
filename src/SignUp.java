@@ -32,7 +32,7 @@ public class SignUp extends JFrame implements ActionListener {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish the database connection
-            String url = "jdbc:mysql://localhost:3308/db_loginadmin";
+            String url = "jdbc:mysql://localhost:3308/db_loginadmin?";
             String username = "Jurie";
             String password = "12345";
             con = DriverManager.getConnection(url, username, password);
